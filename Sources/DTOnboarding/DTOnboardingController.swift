@@ -14,7 +14,7 @@ class DTOnboardingView: NSView {}
 class DTPageView: NSView {}
 class NSPageView: NSView {}
 
-public class DTOnboardingController: NSViewController {
+public class DTOnboardingController: NSViewController, DTPageNavigator {
     private var pageControl: DTPageControl!
     private var pageController: NSPageController!
     private let config: DTOnboardingConfig
@@ -99,6 +99,25 @@ public class DTOnboardingController: NSViewController {
         pageController.transitionStyle = config.pageTransitionStyle
         
         setupPageControl()
+    }
+    
+    //
+    // MARK: - PageNavigator
+    //
+    public func navigateBack() {
+        pageController.navigateBack(self)
+    }
+    
+    public func navigateForward() {
+        pageController.navigateForward(self)
+    }
+    
+    public func navigate(to controllerId: String) {
+        if
+            let pageController = pages.first(where: { $0.controllerId == controllerId }),
+            let index = pages.firstIndex(of: pageController) {
+                self.pageController.selectedIndex = index
+            }
     }
     
     //

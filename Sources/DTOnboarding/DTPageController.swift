@@ -9,7 +9,7 @@
 import AppKit
 
 open class DTPageController: NSViewController {
-    private let controllerId: String
+    public let controllerId: String
     
     public init(controllerId: String) {
         self.controllerId = controllerId
