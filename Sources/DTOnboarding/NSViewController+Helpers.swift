@@ -20,6 +20,7 @@ extension NSViewController {
     public func makeButton() -> NSButton {
         let button = NSButton(frame: .zero)
         button.bezelStyle = .rounded
+        button.isBordered = false
         button.focusRingType = .none
         return button
     }
