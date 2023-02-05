@@ -116,7 +116,12 @@ public class DTOnboardingController: NSViewController, DTPageNavigator {
         if
             let pageController = pages.first(where: { $0.controllerId == controllerId }),
             let index = pages.firstIndex(of: pageController) {
-                self.pageController.selectedIndex = index
+                NSAnimationContext.runAnimationGroup { animationContext in
+                    self.pageController.animator().selectedIndex = index
+                } completionHandler: {
+                    self.pageController.completeTransition()
+                }
+                
             }
     }
     
